@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Status Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        /* Status Badges */
+        .badge {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: white;
+        }
+        .status-up {
+            background-color: #28a745; /* Green */
+        }
+        .status-down {
+            background-color: #dc3545; /* Red */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Service Monitor</h1>
+<p>Real-time status of configured application endpoints.</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Service Name</th>
+        <th>Target URL</th>
+        <th>Current Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="service : ${services}">
+        <td th:text="${service.name}">Service Name</td>
+        <td>
+            <a th:href="${service.url}" th:text="${service.url}" target="_blank">http://url</a>
+        </td>
+        <td>
+                    <span class="badge"
+                          th:classappend="${#strings.startsWith(service.status, 'UP')} ? 'status-up' : 'status-down'"
+                          th:text="${service.status}">
+                        STATUS
+                    </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="margin-top: 20px; text-align: center;">
+    <button onclick="location.reload()" style="padding: 10px 20px; cursor: pointer;">Refresh Status</button>
+</div>
+
+</body>
+</html>
