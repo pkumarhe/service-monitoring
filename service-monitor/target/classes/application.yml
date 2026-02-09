@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: service-monitor
+
+server:
+  port: 8080
+
+app:
+  monitoring:
+    regions:
+      - name: "AF"
+        countries:
+          - name: "NG"
+            urls:
+              - { name: "Google", url: "https://google.com" }
+              - { name: "Corporate Portal", url: "https://portal.company.com" }
+          - name: "GH"
+            urls:
+              - { name: "Shopify", url: "https://shopify.ca" }
+      - name: "Asia"
+        countries:
+          - name: "India"
+            urls:
+              - { name: "Internal API", url: "http://10.20.30.40:8080" }
+          - name: "MY"
+            urls:
+              - { name: "Internal API", url: "http://10.20.30.40:8080" }
+      - name: "IC"
+        countries:
+          - name: "SG"
+            urls:
+              - { name: "Internal API", url: "http://10.20.30.40:8080" }
+          - name: "HK"
+            urls:
+              - { name: "Internal API", url: "http://10.20.30.40:8080" }
